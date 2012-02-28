@@ -1,0 +1,1 @@
+<source type="FlatFile" name="" inputFilePath="" inputFileMask="*.txt" maxMsgSize="1048576" aggregatedSubject="" aggregateBySubject="False" removeFilesOnDone="False" appendDoneFiles="True" appendDoneFileMaxSizeKB="10" defaultToAddress="" appendDoneFileMaxSizeKB="0" />

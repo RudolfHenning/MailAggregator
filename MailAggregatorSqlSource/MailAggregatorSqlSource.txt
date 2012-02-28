@@ -1,0 +1,56 @@
+/* This is an example script how to modify the QuickMon Sql notifier alert/message table to be used with Mail Aggregator service */
+
+/* To prevent any potential data loss issues, you should review this script in detail before running it outside the context of the database designer.*/
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE dbo.AlertMessages ADD
+	MailAggregatorSent bit NOT NULL CONSTRAINT DF_AlertMessages_MailAggregatorSent DEFAULT 0
+GO
+ALTER TABLE dbo.AlertMessages SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+go
+
+create proc GetMailAggregatorMessages
+as
+  select top 100
+	MessageId as [Id],
+	'' as  [ToAddress],
+	AlertLevel + ' - ' + Category as [Subject],
+	'Time: ' + convert(varchar(20), InsertDate, 120) + CHAR(13) + CHAR(10) +
+	'Alert Level: ' + AlertLevel + CHAR(13) + CHAR(10) +
+	'Collector: ' + CollectorType + CHAR(13) + CHAR(10) +
+	'Category: ' + Category + CHAR(13) + CHAR(10) +
+	'Current state: ' + CurrentState + CHAR(13) + CHAR(10) +
+	'Details: ' + Details as [Body]
+  from
+	dbo.vAlertMessages
+  where
+	AlertLevelId > 1 and MailAggregatorSent = 0
+  order by
+	InsertDate desc
+go
+grant execute on dbo.GetMailAggregatorMessages to public
+go
+
+create proc MarkMailAggregatorMessageAsDone
+(
+	@Id int
+)
+as
+  UPDATE dbo.AlertMessages
+  SET MailAggregatorSent = 1
+  WHERE
+	MessageId = @Id
+go
+grant execute on dbo.MarkMailAggregatorMessageAsDone to public
+go
