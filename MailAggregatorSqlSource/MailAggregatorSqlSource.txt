@@ -20,6 +20,19 @@ GO
 COMMIT
 go
 
+alter view vAlertMessages
+as
+  SELECT dbo.AlertMessages.MessageId, dbo.AlertLevels.Description AS AlertLevel, dbo.Categories.Category, dbo.States.Description AS PreviousState, 
+			   States_1.Description AS CurrentState, dbo.AlertMessages.Details, dbo.AlertMessages.InsertDate, dbo.Categories.CategoryId, 
+			   dbo.AlertLevels.AlertLevel AS AlertLevelId, States_1.StateId, dbo.CollectorTypes.CollectorType, dbo.AlertMessages.MailAggregatorSent
+  FROM  dbo.AlertMessages INNER JOIN
+			   dbo.Categories ON dbo.AlertMessages.CategoryId = dbo.Categories.CategoryId INNER JOIN
+			   dbo.AlertLevels ON dbo.AlertMessages.AlertLevel = dbo.AlertLevels.AlertLevel INNER JOIN
+			   dbo.States ON dbo.AlertMessages.PreviousState = dbo.States.StateId INNER JOIN
+			   dbo.States AS States_1 ON dbo.AlertMessages.CurrentState = States_1.StateId INNER JOIN
+			   dbo.CollectorTypes ON dbo.AlertMessages.CollectorTypeId = dbo.CollectorTypes.CollectorTypeId
+go
+
 create proc GetMailAggregatorMessages
 as
   select top 100
