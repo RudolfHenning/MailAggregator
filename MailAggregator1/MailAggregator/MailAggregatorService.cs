@@ -50,6 +50,8 @@ namespace MailAggregator
                     host.IsBodyHtml = Properties.Settings.Default.IsBodyHtml;
                     host.InitializeHost(sourceConfig);
 
+                    EventLog.WriteEntry(serviceEventSource, "Starting aggregator host: " + host.MAGSourceName, EventLogEntryType.Information, 2);
+
                     host.AggregatorHostError += new RaiseMessageDelegate(host_AggregatorHostError);
                     hosts.Add(host);
                     host.StartPolling();

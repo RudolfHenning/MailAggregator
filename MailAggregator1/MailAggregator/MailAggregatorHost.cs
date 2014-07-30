@@ -42,7 +42,17 @@ namespace MailAggregator
         public string SMTPUserName { get; set; }
         public string SMTPPassword { get; set; }
         public string FromAddress { get; set; }
-        public bool IsBodyHtml { get; set; } 
+        public bool IsBodyHtml { get; set; }
+        public string MAGSourceName 
+        {
+            get
+            {
+                if (magsource != null)
+                    return magsource.Name;
+                else
+                    return "N/A";
+            }
+        }
         #endregion
 
         #region Initialize Host
