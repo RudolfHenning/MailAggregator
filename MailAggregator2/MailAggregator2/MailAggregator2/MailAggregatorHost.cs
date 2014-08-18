@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading;
 
@@ -9,6 +10,7 @@ namespace MailAggregator
     public class MailAggregatorHost
     {
         private IMailAggregatorSource magsource = null;
+        private Mutex mailAggregatorSMTPWriteMutex = new Mutex();
 
         #region Constructor
         public MailAggregatorHost()
@@ -76,7 +78,60 @@ namespace MailAggregator
         }
         private void RunAggregator()
         {
+            string lastStep = "";
+            if (magsource != null)
+            {
+                try
+                {
+                    mailAggregatorSMTPWriteMutex.WaitOne();
+                    lastStep = "Reading messages";
+                    List<MailAggregatedMessage> msgs = magsource.GetMessages();
+                    if (msgs.Count > 0)
+                    {
+                        lastStep = "Initializing SMTP client";
+                        using (SmtpClient smtpClient = new SmtpClient())
+                        {
+                            smtpClient.Host = SMTPHost;
+                            smtpClient.UseDefaultCredentials = SMTPUseDefaultCredentials;
+                            if (!SMTPUseDefaultCredentials)
+                            {
+                                lastStep = "Setting up non default credentials";
+                                System.Net.NetworkCredential cr = new System.Net.NetworkCredential();
+                                cr.Domain = SMTPDomain;
+                                cr.UserName = SMTPUserName;
+                                cr.Password = SMTPPassword;
+                                smtpClient.Credentials = cr;
+                            }
+                            lastStep = "Looping through messages";
+                            foreach (MailAggregatedMessage msg in msgs)
+                            {
+                                try
+                                {
+                                    MailMessage mailMessage = new MailMessage(FromAddress, msg.ToAddress);
 
+                                    mailMessage.Body = msg.Body;
+                                    mailMessage.IsBodyHtml = IsBodyHtml;
+                                    mailMessage.Subject = msg.Subject;
+                                    lastStep = "Sending SMTP mail";
+                                    smtpClient.Send(mailMessage);
+                                }
+                                catch (Exception ex)
+                                {
+                                    RaiseAggregatorHostError(string.Format("An error occured trying to process the message '{0}'\r\n{1}", msg.Subject, ex.ToString()));
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    RaiseAggregatorHostError(string.Format("An error occured while sending mail.\r\n{0}\r\n", lastStep, ex.ToString()));
+                }
+                finally
+                {
+                    mailAggregatorSMTPWriteMutex.ReleaseMutex();
+                }
+            }
         }
         private void BackgroundWaitIsPolling(int nextWaitInterval)
         {
