@@ -87,7 +87,20 @@ namespace MailAggregator
                 {
                     foreach (string fileName in System.IO.Directory.GetFiles(inputFilePath, inputFileMask))
                     {
-                        string[] lines = System.IO.File.ReadAllLines(fileName);
+                        string[] lines = "".Split();
+                        try
+                        {
+                            lines = System.IO.File.ReadAllLines(fileName);
+                        }
+                        catch (Exception linesEx)
+                        {
+                            if (linesEx.Message.Contains("The process cannot access the file"))
+                            {
+                                lines = "".Split();
+                            }
+                            else
+                                throw;
+                        }
                         if (lines.Length == 0)
                             RaiseAggregatorError(string.Format("The file {0} is empty!", fileName));
                         else

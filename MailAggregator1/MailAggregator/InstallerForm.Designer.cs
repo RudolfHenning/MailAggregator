@@ -1,4 +1,4 @@
-﻿namespace MailAggregator
+﻿namespace HenIT.Services
 {
     partial class InstallerForm
     {
@@ -42,6 +42,7 @@
             this.cmdCancel = new System.Windows.Forms.Button();
             this.cboStartup = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.chkDelayedStart = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -195,11 +196,24 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Start up";
             // 
+            // chkDelayedStart
+            // 
+            this.chkDelayedStart.AutoSize = true;
+            this.chkDelayedStart.Checked = true;
+            this.chkDelayedStart.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkDelayedStart.Location = new System.Drawing.Point(21, 201);
+            this.chkDelayedStart.Name = "chkDelayedStart";
+            this.chkDelayedStart.Size = new System.Drawing.Size(88, 17);
+            this.chkDelayedStart.TabIndex = 7;
+            this.chkDelayedStart.Text = "Delayed start";
+            this.chkDelayedStart.UseVisualStyleBackColor = true;
+            // 
             // InstallerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(354, 232);
+            this.Controls.Add(this.chkDelayedStart);
             this.Controls.Add(this.cboStartup);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cmdCancel);
@@ -213,7 +227,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "InstallerForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Windows Service settings";
             this.Load += new System.EventHandler(this.InstallerForm_Load);
             this.groupBox1.ResumeLayout(false);
@@ -238,5 +252,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cboStartup;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox chkDelayedStart;
     }
 }

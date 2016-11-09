@@ -4,6 +4,7 @@ using System.ServiceProcess;
 using System.Text;
 using System.Collections;
 using System.Configuration.Install;
+using HenIT.Services;
 
 namespace MailAggregator
 {

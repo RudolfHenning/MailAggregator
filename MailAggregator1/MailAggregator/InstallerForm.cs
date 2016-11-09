@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
+//using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.ServiceProcess;
 
-namespace MailAggregator
+namespace HenIT.Services
 {
     public partial class InstallerForm : Form
     {
@@ -21,6 +21,7 @@ namespace MailAggregator
         public ServiceAccount AccountType { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
+        public bool DelayedStart { get; set; }
 
         private void InstallerForm_Load(object sender, EventArgs e)
         {
@@ -81,6 +82,7 @@ namespace MailAggregator
                     UserName = txtUserAccount.Text;
                     Password = txtPassword.Text;
                 }
+                DelayedStart = chkDelayedStart.Checked;
                 StartType = cboStartup.SelectedIndex == 0 ? ServiceStartMode.Automatic :
                     cboStartup.SelectedIndex == 1 ? ServiceStartMode.Manual : ServiceStartMode.Disabled;
                 AccountType = cboUserAccountType.SelectedIndex == 3 ? ServiceAccount.User :
@@ -94,7 +96,7 @@ namespace MailAggregator
         private void txtPassword2_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == '\r')
-                if (cboUserAccountType.SelectedIndex == 3 && txtPassword.Text != txtPassword2.Text)
+                if (cboUserAccountType.SelectedIndex == 3 && (txtPassword.Text != txtPassword2.Text))
                     cmdOK_Click(sender, e);
 
             base.OnKeyPress(e);
