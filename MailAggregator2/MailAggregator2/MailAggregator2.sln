@@ -1,20 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Windows Desktop
-VisualStudioVersion = 12.0.30626.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailAggregator2", "MailAggregator2\MailAggregator2.csproj", "{BFB5EC55-2F63-4A78-A3E7-7DDD2D6B3F2C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailAggregatorFFSource", "MailAggregatorFFSource\MailAggregatorFFSource.csproj", "{AD84A13A-D80F-44B6-BACD-F36CB1B12C76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailAggregatorSource", "MailAggregatorSource\MailAggregatorSource.csproj", "{26D0BBD1-7393-4CEB-8FF6-C7931533CD04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailAggregatorSqlSource", "MailAggregatorSqlSource\MailAggregatorSqlSource.csproj", "{521E2DA2-C76D-4720-9F1C-CBC18EDB2B40}"
+EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 2
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs05
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = MailAggregator2\\MailAggregator2.csproj
-		SccProjectName1 = MailAggregator2
-		SccLocalPath1 = MailAggregator2
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -24,8 +21,38 @@ Global
 		{BFB5EC55-2F63-4A78-A3E7-7DDD2D6B3F2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFB5EC55-2F63-4A78-A3E7-7DDD2D6B3F2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFB5EC55-2F63-4A78-A3E7-7DDD2D6B3F2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD84A13A-D80F-44B6-BACD-F36CB1B12C76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD84A13A-D80F-44B6-BACD-F36CB1B12C76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD84A13A-D80F-44B6-BACD-F36CB1B12C76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD84A13A-D80F-44B6-BACD-F36CB1B12C76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26D0BBD1-7393-4CEB-8FF6-C7931533CD04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26D0BBD1-7393-4CEB-8FF6-C7931533CD04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26D0BBD1-7393-4CEB-8FF6-C7931533CD04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26D0BBD1-7393-4CEB-8FF6-C7931533CD04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{521E2DA2-C76D-4720-9F1C-CBC18EDB2B40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{521E2DA2-C76D-4720-9F1C-CBC18EDB2B40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{521E2DA2-C76D-4720-9F1C-CBC18EDB2B40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{521E2DA2-C76D-4720-9F1C-CBC18EDB2B40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs05
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = MailAggregator2\\MailAggregator2.csproj
+		SccProjectName1 = MailAggregator2
+		SccLocalPath1 = MailAggregator2
+		SccProjectUniqueName2 = MailAggregatorFFSource\\MailAggregatorFFSource.csproj
+		SccProjectName2 = MailAggregatorFFSource
+		SccLocalPath2 = MailAggregatorFFSource
+		SccProjectUniqueName3 = MailAggregatorSource\\MailAggregatorSource.csproj
+		SccProjectName3 = MailAggregatorSource
+		SccLocalPath3 = MailAggregatorSource
+		SccProjectUniqueName4 = MailAggregatorSqlSource\\MailAggregatorSqlSource.csproj
+		SccProjectName4 = MailAggregatorSqlSource
+		SccLocalPath4 = MailAggregatorSqlSource
 	EndGlobalSection
 EndGlobal
