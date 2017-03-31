@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
@@ -9,8 +9,8 @@ namespace MailAggregator
 {
     public class MailAggregatorHost
     {
-        private IMailAggregatorSource magsource = null;
         private Mutex mailAggregatorSMTPWriteMutex = new Mutex();
+        private IMailAggregatorSource magsource = null;        
 
         #region Constructor
         public MailAggregatorHost()
@@ -43,6 +43,17 @@ namespace MailAggregator
         public string SMTPPassword { get; set; }
         public string FromAddress { get; set; }
         public bool IsBodyHtml { get; set; }
+        public string MAGSourceName 
+        {
+            get
+            {
+                if (magsource != null)
+                    return magsource.Name;
+                else
+                    return "N/A";
+            }
+        }
+
         #endregion
 
         #region Initialize Host
@@ -52,6 +63,31 @@ namespace MailAggregator
         /// <param name="config">Configuration string</param>
         public void InitializeHost(string config)
         {
+            MASShared masShared = new MASShared();
+            string aggregatorType = masShared.GetAggregatorTypeFromConfig(config);
+            magsource = masShared.GetMASAssembly(aggregatorType);
+            if (magsource == null)
+            {
+                RaiseAggregatorHostError(string.Format("Mail aggregator with type '{0}' could not be found!", aggregatorType));
+            }
+            else
+            {
+                magsource.AggregatorError += new RaiseMessageDelegate(magsource_AggregatorError);
+                if (Properties.Settings.Default.MessageBodyTemplate != null || Properties.Settings.Default.MessageBodyTemplate.Length > 0)
+                {
+                    magsource.MessageBodyTemplate = Properties.Settings.Default.MessageBodyTemplate;
+                }
+                if (Properties.Settings.Default.MessageSeparatorTemplate != null || Properties.Settings.Default.MessageSeparatorTemplate.Length > 0)
+                {
+                    magsource.MessageSeparatorTemplate = Properties.Settings.Default.MessageSeparatorTemplate;
+                }
+
+                if (!magsource.SetConfig(config))
+                {
+                    RaiseAggregatorHostError(string.Format("An error occured while configuring the aggregator with config {0}\r\n(1}", config, magsource.LastError));
+                    magsource = null;
+                }
+            }
         }
         #endregion
 

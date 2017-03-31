@@ -29,5 +29,13 @@
     <Setting Name="IsBodyHtml" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="MessageBodyTemplate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;b&gt;Message %MsgNo%&lt;/b&gt;&lt;br/&gt;
+&lt;b&gt;Subject: %Subject%&lt;/b&gt;&lt;br/&gt;
+&lt;pre&gt;%Body%&lt;/pre&gt;</Value>
+    </Setting>
+    <Setting Name="MessageSeparatorTemplate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;hr /&gt;</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -72,10 +72,13 @@ namespace MailAggregator
                                 EventLogEntryType.Error, 1);
                         }
                     }
+                    WriteLog(string.Format("{0} (version {1}) started successfully with {2} aggregator host(s)",
+                    serviceEventSource,
+                    System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString(),
+                    hosts.Count), EventLogEntryType.Information, 0);
                 }
-
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 WriteLog(ex.Message, EventLogEntryType.Error, 0);
             }
