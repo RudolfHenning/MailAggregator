@@ -24,12 +24,21 @@ namespace MailAggregator
         public event RaiseMessageDelegate AggregatorHostError;
         private void RaiseAggregatorHostError(string message)
         {
-            if (AggregatorHostError != null)
-                AggregatorHostError(message);
+            AggregatorHostError?.Invoke(message);
         }
         private void magsource_AggregatorError(string message)
         {
             RaiseAggregatorHostError(message);
+        }
+
+        public event RaiseMessageDelegate AggregatorHostWarning;
+        private void RaiseAggregatorHostWarning(string message)
+        {
+            AggregatorHostWarning?.Invoke(message);
+        }
+        private void magsource_AggregatorWarning(string message)
+        {
+            RaiseAggregatorHostWarning(message);
         }
         #endregion
 
@@ -73,6 +82,7 @@ namespace MailAggregator
             else
             {
                 magsource.AggregatorError += new RaiseMessageDelegate(magsource_AggregatorError);
+                magsource.AggregatorWarning += new RaiseMessageDelegate(magsource_AggregatorWarning);
                 if (Properties.Settings.Default.MessageBodyTemplate != null || Properties.Settings.Default.MessageBodyTemplate.Length > 0)
                 {
                     magsource.MessageBodyTemplate = Properties.Settings.Default.MessageBodyTemplate;

@@ -1,0 +1,3 @@
+Message %MsgNo%
+Subject: %Subject%
+%Body%

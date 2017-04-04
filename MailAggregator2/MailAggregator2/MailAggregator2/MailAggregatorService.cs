@@ -63,6 +63,7 @@ namespace MailAggregator
                             host.InitializeHost(sourceConfig);
 
                             host.AggregatorHostError += new RaiseMessageDelegate(host_AggregatorHostError);
+                            host.AggregatorHostWarning += Host_AggregatorHostWarning;
                             hosts.Add(host);
                             host.StartPolling();
                         }
@@ -85,6 +86,13 @@ namespace MailAggregator
 
             base.OnStart(args);
         }
+
+        private void Host_AggregatorHostWarning(string message)
+        {
+            WriteLog(message, EventLogEntryType.Warning, 2);
+            //EventLog.WriteEntry(serviceEventSource, message, EventLogEntryType.Warning, 2);
+        }
+
         protected override void OnStop()
         {
             foreach (MailAggregatorHost host in hosts)
@@ -98,7 +106,8 @@ namespace MailAggregator
         #region Events
         private void host_AggregatorHostError(string message)
         {
-            EventLog.WriteEntry(serviceEventSource, message, EventLogEntryType.Error, 1);
+            //EventLog.WriteEntry(serviceEventSource, message, EventLogEntryType.Error, 1);
+            WriteLog(message, EventLogEntryType.Error, 1);
         }
         #endregion
 

@@ -1,0 +1,13 @@
+D:\Rudolf\SourceCode\CodePlex5\MailAggregator\MailAggregator1\MailAggregatorSource\bin\Debug\MailAggregatorSource.dll
+D:\Rudolf\SourceCode\CodePlex5\MailAggregator\MailAggregator1\MailAggregatorSource\bin\Debug\MailAggregatorSource.pdb
+D:\Rudolf\SourceCode\CodePlex5\MailAggregator\MailAggregator1\MailAggregatorSource\obj\Debug\MailAggregatorSource.dll
+D:\Rudolf\SourceCode\CodePlex5\MailAggregator\MailAggregator1\MailAggregatorSource\obj\Debug\MailAggregatorSource.pdb
+D:\Rudolf\SourceCode\CodePlex5\MailAggregator\MailAggregator2\MailAggregator2\MailAggregatorSource\bin\Debug\MailAggregatorSource.dll
+D:\Rudolf\SourceCode\CodePlex5\MailAggregator\MailAggregator2\MailAggregator2\MailAggregatorSource\bin\Debug\MailAggregatorSource.pdb
+D:\Rudolf\SourceCode\CodePlex5\MailAggregator\MailAggregator2\MailAggregator2\MailAggregatorSource\obj\Debug\MailAggregatorSource.csprojResolveAssemblyReference.cache
+D:\Rudolf\SourceCode\CodePlex5\MailAggregator\MailAggregator2\MailAggregator2\MailAggregatorSource\obj\Debug\MailAggregatorSource.dll
+D:\Rudolf\SourceCode\CodePlex5\MailAggregator\MailAggregator2\MailAggregator2\MailAggregatorSource\obj\Debug\MailAggregatorSource.pdb
+D:\Rudolf\SourceCode\GitHub\MailAggregator\MailAggregator2\MailAggregator2\MailAggregatorSource\bin\Debug\MailAggregatorSource.dll
+D:\Rudolf\SourceCode\GitHub\MailAggregator\MailAggregator2\MailAggregator2\MailAggregatorSource\bin\Debug\MailAggregatorSource.pdb
+D:\Rudolf\SourceCode\GitHub\MailAggregator\MailAggregator2\MailAggregator2\MailAggregatorSource\obj\Debug\MailAggregatorSource.dll
+D:\Rudolf\SourceCode\GitHub\MailAggregator\MailAggregator2\MailAggregator2\MailAggregatorSource\obj\Debug\MailAggregatorSource.pdb

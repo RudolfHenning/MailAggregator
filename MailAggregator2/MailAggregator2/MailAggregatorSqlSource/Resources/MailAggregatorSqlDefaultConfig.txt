@@ -1,0 +1,1 @@
+<source type="SqlServer" name="" sqlServerName="" database="" integratedSec="True" userName="" password="" aggregatedSubject="" aggregateBySubject="False" defaultToAddress="" useSPs="True" selectMsgs="GetMailAggregatorMessages" markMessageDone="MarkMailAggregatorMessageAsDone" />
